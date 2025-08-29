@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalFlow - Sistema de Gestión Jurídica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'legal-navy': '#1e3a8a',
+                        'legal-gold': '#f59e0b',
+                        'legal-light': '#f8fafc',
+                        'legal-gray': '#64748b',
+                        'legal-dark': '#0f172a',
+                        'success': '#10b981',
+                        'warning': '#ef4444',
+                        'pending': '#eab308',
+                        'info': '#3b82f6',
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+        }
+        .legal-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        }
+        .professional-shadow {
+            box-shadow: 0 4px 25px rgba(30, 58, 138, 0.15);
+        }
+        .case-urgent {
+            border-left: 5px solid #ef4444;
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%);
+        }
+        .case-normal {
+            border-left: 5px solid #10b981;
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%);
+        }
+        .case-pending {
+            border-left: 5px solid #eab308;
+            background: linear-gradient(90deg, rgba(234, 179, 8, 0.05) 0%, transparent 100%);
+        }
+        .chart-bar {
+            background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+            animation: growUp 1.2s ease-out;
+        }
+        @keyframes growUp {
+            from { height: 0; }
+            to { height: var(--height); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar-item {
+            transition: all 0.3s ease;
+        }
+        .sidebar-item:hover {
+            background: rgba(30, 58, 138, 0.1);
+            border-radius: 8px;
+        }
+        .metric-card {
+            transition: transform 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-2px);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+        }
+        .sidebar-overlay.show {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                position: fixed;
+                z-index: 50;
+                height: 100vh;
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-legal-light">
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    
+    <div class="flex h-screen relative">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar w-64 legal-gradient text-white flex-shrink-0 overflow-y-auto">
+            <div class="p-4 lg:p-6">
+                <div class="flex items-center justify-between mb-6 lg:mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 lg:w-12 lg:h-12 bg-legal-gold rounded-xl flex items-center justify-center professional-shadow">
+                            <span class="text-white text-lg lg:text-xl">⚖️</span>
+                        </div>
+                        <div>
+                            <h1 class="text-lg lg:text-xl font-bold">LegalPanel</h1>
+                            <p class="text-blue-200 text-xs lg:text-sm">Gestión Jurídica</p>
+                        </div>
+                    </div>
+                    <button class="md:hidden text-white text-xl" onclick="toggleSidebar()">✕</button>
+                </div>
+
+                <nav class="space-y-2">
+                    <a href="#" onclick="showDashboard()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium bg-white/10 rounded-lg">
+                        <span>📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" onclick="showExpedientes()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium hover:bg-white/10 rounded-lg">
+                        <span>📁</span>
+                        <span>Expedientes</span>
+                    </a>
+                    <a href="#" onclick="showCalendario()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium hover:bg-white/10 rounded-lg">
+                        <span>📅</span>
+                        <span>Calendario</span>
+                    </a>
+                    <a href="#" onclick="showClientes()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium hover:bg-white/10 rounded-lg">
+                        <span>👥</span>
+                        <span>Clientes</span>
+                    </a>
+                    <a href="#" onclick="showDocumentos()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium hover:bg-white/10 rounded-lg">
+                        <span>📄</span>
+                        <span>Documentos</span>
+                    </a>
+                    <a href="#" onclick="showFacturacion()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium hover:bg-white/10 rounded-lg">
+                        <span>💰</span>
+                        <span>Facturación</span>
+                    </a>
+                    <a href="#" onclick="showTiempo()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium hover:bg-white/10 rounded-lg">
+                        <span>⏱️</span>
+                        <span>Tiempo</span>
+                    </a>
+                    <a href="#" onclick="showReportes()" class="sidebar-item flex items-center space-x-3 p-3 text-sm font-medium hover:bg-white/10 rounded-lg">
+                        <span>📈</span>
+                        <span>Reportes</span>
+                    </a>
+                </nav>
+
+                <div class="mt-6 lg:mt-8 p-3 lg:p-4 bg-white/10 rounded-lg">
+                    <h3 class="text-sm font-semibold mb-2">Acceso Rápido</h3>
+                    <div class="space-y-2">
+                        <button onclick="openNewCaseModal()" class="w-full bg-legal-gold text-legal-dark py-2 px-3 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+                            + Nuevo Caso
+                        </button>
+                        <button onclick="openNewClientModal()" class="w-full border border-white/20 py-2 px-3 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
+                            + Nuevo Cliente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <!-- Header -->
+            <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+                <div class="px-4 lg:px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <button class="md:hidden text-legal-navy text-xl" onclick="toggleSidebar()">☰</button>
+                            <div>
+                                <h2 class="text-xl lg:text-2xl font-bold text-legal-dark">Dashboard Principal</h2>
+                                <p class="text-legal-gray text-sm hidden sm:block">Gestión integral de tu estudio jurídico</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2 lg:space-x-4">
+                            <div class="hidden lg:flex items-center space-x-2 text-sm text-legal-gray">
+                                <span>📍</span>
+                                <span>Buenos Aires, Argentina</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-legal-gray">
+                                <span>🕐</span>
+                                <span id="current-time">14:30</span>
+                            </div>
+                            <div class="w-8 h-8 lg:w-10 lg:h-10 bg-legal-navy rounded-full flex items-center justify-center cursor-pointer" onclick="showProfile()">
+                                <span class="text-white text-xs lg:text-sm font-semibold">DG</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <main id="mainContent" class="p-4 lg:p-6 space-y-6">
+                <!-- Métricas Principales -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
+                    <div class="metric-card bg-white rounded-xl p-4 lg:p-6 professional-shadow fade-in cursor-pointer" onclick="showCasosActivos()">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-legal-gray text-xs lg:text-sm font-medium">Casos Activos</p>
+                                <p class="text-2xl lg:text-3xl font-bold text-legal-navy">24</p>
+                                <p class="text-success text-xs lg:text-sm">+3 esta semana</p>
+                            </div>
+                            <div class="w-10 h-10 lg:w-12 lg:h-12 bg-success rounded-lg flex items-center justify-center">
+                                <span class="text-white text-lg lg:text-xl">📁</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card bg-white rounded-xl p-4 lg:p-6 professional-shadow fade-in cursor-pointer" onclick="showAudienciasHoy()">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-legal-gray text-xs lg:text-sm font-medium">Audiencias Hoy</p>
+                                <p class="text-2xl lg:text-3xl font-bold text-legal-navy">5</p>
+                                <p class="text-warning text-xs lg:text-sm">2 urgentes</p>
+                            </div>
+                            <div class="w-10 h-10 lg:w-12 lg:h-12 bg-warning rounded-lg flex items-center justify-center">
+                                <span class="text-white text-lg lg:text-xl">🏛️</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card bg-white rounded-xl p-4 lg:p-6 professional-shadow fade-in cursor-pointer" onclick="showIngresosMensuales()">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-legal-gray text-xs lg:text-sm font-medium">Ingresos Mensuales</p>
+                                <p class="text-xl lg:text-3xl font-bold text-legal-navy">$125,400</p>
+                                <p class="text-success text-xs lg:text-sm">+18% vs mes anterior</p>
+                            </div>
+                            <div class="w-10 h-10 lg:w-12 lg:h-12 bg-legal-gold rounded-lg flex items-center justify-center">
+                                <span class="text-white text-lg lg:text-xl">💰</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card bg-white rounded-xl p-4 lg:p-6 professional-shadow fade-in cursor-pointer" onclick="showHorasFacturadas()">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-legal-gray text-xs lg:text-sm font-medium">Horas Facturadas</p>
+                                <p class="text-2xl lg:text-3xl font-bold text-legal-navy">156</p>
+                                <p class="text-info text-xs lg:text-sm">Meta: 180 hs/mes</p>
+                            </div>
+                            <div class="w-10 h-10 lg:w-12 lg:h-12 bg-info rounded-lg flex items-center justify-center">
+                                <span class="text-white text-lg lg:text-xl">⏱️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenido Principal -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Casos Prioritarios -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-xl professional-shadow">
+                            <div class="legal-gradient text-white p-4 lg:p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-lg lg:text-xl font-semibold">Expedientes Prioritarios</h3>
+                                        <p class="text-blue-100 text-sm">Casos que requieren atención inmediata</p>
+                                    </div>
+                                    <button onclick="showTodosExpedientes()" class="bg-white/20 hover:bg-white/30 px-3 lg:px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                        Ver Todos
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="p-4 lg:p-6 space-y-4">
+                                <div class="case-urgent p-4 lg:p-5 rounded-lg hover:shadow-md transition-all cursor-pointer" onclick="openCaseDetail('2024-001')">
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-3 mb-2">
+                                                <h4 class="font-semibold text-legal-navy text-sm lg:text-base">Divorcio Contencioso - Fernández vs Fernández</h4>
+                                                <span class="bg-warning text-white px-2 py-1 rounded-full text-xs font-medium">URGENTE</span>
+                                            </div>
+                                            <p class="text-legal-gray text-sm mb-3">Expediente N° 2024-001 | Derecho de Familia</p>
+                                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-legal-gray">
+                                                <div class="flex items-center space-x-1">
+                                                    <span>📅</span>
+                                                    <span>Audiencia: Mañana 10:00 AM</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>👤</span>
+                                                    <span>Dr. González</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>🏛️</span>
+                                                    <span>Juzgado Civil N°3</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right ml-4">
+                                            <p class="text-warning text-sm font-semibold">Vence en 1 día</p>
+                                            <p class="text-legal-gray text-xs mt-1">Última actividad: Hoy</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="case-normal p-4 lg:p-5 rounded-lg hover:shadow-md transition-all cursor-pointer" onclick="openCaseDetail('2024-002')">
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-3 mb-2">
+                                                <h4 class="font-semibold text-legal-navy text-sm lg:text-base">Constitución S.A. - TechSolutions Corp</h4>
+                                                <span class="bg-success text-white px-2 py-1 rounded-full text-xs font-medium">EN PROGRESO</span>
+                                            </div>
+                                            <p class="text-legal-gray text-sm mb-3">Expediente N° 2024-002 | Derecho Corporativo</p>
+                                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-legal-gray">
+                                                <div class="flex items-center space-x-1">
+                                                    <span>📋</span>
+                                                    <span>Documentación: 85% completa</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>👤</span>
+                                                    <span>Dra. Silva</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>⏰</span>
+                                                    <span>7 días hábiles restantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right ml-4">
+                                            <p class="text-success text-sm font-semibold">Dentro del plazo</p>
+                                            <p class="text-legal-gray text-xs mt-1">Última actividad: Ayer</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="case-pending p-4 lg:p-5 rounded-lg hover:shadow-md transition-all cursor-pointer" onclick="openCaseDetail('2024-003')">
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-3 mb-2">
+                                                <h4 class="font-semibold text-legal-navy text-sm lg:text-base">Reclamo Laboral - Industrias López S.A.</h4>
+                                                <span class="bg-pending text-white px-2 py-1 rounded-full text-xs font-medium">PENDIENTE</span>
+                                            </div>
+                                            <p class="text-legal-gray text-sm mb-3">Expediente N° 2024-003 | Derecho Laboral</p>
+                                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-legal-gray">
+                                                <div class="flex items-center space-x-1">
+                                                    <span>📄</span>
+                                                    <span>Esperando documentación del cliente</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>👤</span>
+                                                    <span>Dr. López</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>📞</span>
+                                                    <span>Último contacto: 3 días</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right ml-4">
+                                            <p class="text-pending text-sm font-semibold">Acción requerida</p>
+                                            <p class="text-legal-gray text-xs mt-1">Seguimiento necesario</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="case-normal p-4 lg:p-5 rounded-lg hover:shadow-md transition-all cursor-pointer" onclick="openCaseDetail('2024-004')">
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-3 mb-2">
+                                                <h4 class="font-semibold text-legal-navy text-sm lg:text-base">Compraventa - Departamento Palermo</h4>
+                                                <span class="bg-info text-white px-2 py-1 rounded-full text-xs font-medium">CASI LISTO</span>
+                                            </div>
+                                            <p class="text-legal-gray text-sm mb-3">Expediente N° 2024-004 | Derecho Inmobiliario</p>
+                                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-legal-gray">
+                                                <div class="flex items-center space-x-1">
+                                                    <span>🏠</span>
+                                                    <span>Escrituración programada</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>💰</span>
+                                                    <span>USD 180,000</span>
+                                                </div>
+                                                <div class="flex items-center space-x-1">
+                                                    <span>📅</span>
+                                                    <span>Cierre: 28 Feb</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right ml-4">
+                                            <p class="text-info text-sm font-semibold">Lista para cierre</p>
+                                            <p class="text-legal-gray text-xs mt-1">Dr. González</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel Lateral -->
+                    <div class="space-y-6">
+                        <!-- Agenda del Día -->
+                        <div class="bg-white rounded-xl p-4 lg:p-6 professional-shadow">
+                            <h3 class="text-lg font-semibold text-legal-navy mb-4 flex items-center">
+                                <span class="mr-2">📅</span>
+                                Agenda de Hoy
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-red-50 border-l-4 border-warning rounded-r-lg cursor-pointer" onclick="showAudienciaDetail('fernandez')">
+                                    <div>
+                                        <p class="font-medium text-sm text-legal-navy">Audiencia Fernández</p>
+                                        <p class="text-legal-gray text-xs">Juzgado Civil N°3</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-warning text-sm font-bold">10:00</p>
+                                        <p class="text-legal-gray text-xs">1 hora</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-blue-50 border-l-4 border-info rounded-r-lg cursor-pointer" onclick="showReunionDetail('techsolutions')">
+                                    <div>
+                                        <p class="font-medium text-sm text-legal-navy">Reunión Cliente TechSolutions</p>
+                                        <p class="text-legal-gray text-xs">Oficina Principal</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-info text-sm font-bold">14:30</p>
+                                        <p class="text-legal-gray text-xs">45 min</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-green-50 border-l-4 border-success rounded-r-lg cursor-pointer" onclick="showRevisionDetail('lopez')">
+                                    <div>
+                                        <p class="font-medium text-sm text-legal-navy">Revisión Documentos López</p>
+                                        <p class="text-legal-gray text-xs">Trabajo interno</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-success text-sm font-bold">16:00</p>
+                                        <p class="text-legal-gray text-xs">2 horas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas de Tiempo -->
+                        <div class="bg-white rounded-xl p-4 lg:p-6 professional-shadow">
+                            <h3 class="text-lg font-semibold text-legal-navy mb-4 flex items-center">
+                                <span class="mr-2">⏱️</span>
+                                Tiempo Facturado
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-legal-gray">Esta semana</span>
+                                        <span class="font-semibold text-legal-navy">38h 45m</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-success h-2 rounded-full chart-bar" style="--height: 8px; width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-legal-gray">Este mes</span>
+                                        <span class="font-semibold text-legal-navy">156h 20m</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-legal-gold h-2 rounded-full chart-bar" style="--height: 8px; width: 87%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-legal-gray">Este año</span>
+                                        <span class="font-semibold text-legal-navy">1,847h 15m</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-info h-2 rounded-full chart-bar" style="--height: 8px; width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="showDetallesTiempo()" class="w-full mt-4 bg-legal-navy text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-legal-dark transition-colors">
+                                Ver Detalles
+                            </button>
+                        </div>
+
+                        <!-- Recordatorios -->
+                        <div class="bg-white rounded-xl p-4 lg:p-6 professional-shadow">
+                            <h3 class="text-lg font-semibold text-legal-navy mb-4 flex items-center">
+                                <span class="mr-2">🔔</span>
+                                Recordatorios
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-yellow-50 border-l-4 border-pending rounded-r-lg cursor-pointer" onclick="showRecordatorio('1')">
+                                    <p class="font-medium text-sm text-legal-navy">Preparar alegatos para audiencia</p>
+                                    <p class="text-legal-gray text-xs">Vence mañana a las 8:00 AM</p>
+                                </div>
+                                <div class="p-3 bg-blue-50 border-l-4 border-info rounded-r-lg cursor-pointer" onclick="showRecordatorio('2')">
+                                    <p class="font-medium text-sm text-legal-navy">Llamar a cliente López</p>
+                                    <p class="text-legal-gray text-xs">Pendiente desde hace 2 días</p>
+                                </div>
+                                <div class="p-3 bg-green-50 border-l-4 border-success rounded-r-lg cursor-pointer" onclick="showRecordatorio('3')">
+                                    <p class="font-medium text-sm text-legal-navy">Enviar factura TechSolutions</p>
+                                    <p class="text-legal-gray text-xs">Listo para envío</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Nuevo Caso Modal -->
+    <div id="newCaseModal" class="modal">
+        <div class="modal-content w-full max-w-2xl">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-legal-navy">Crear Nuevo Caso</h3>
+                <button onclick="closeModal('newCaseModal')" class="text-legal-gray hover:text-legal-navy text-2xl">&times;</button>
+            </div>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Cliente</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                            <option value="">Seleccionar cliente...</option>
+                            <option value="fernandez">María Fernández</option>
+                            <option value="techsolutions">TechSolutions Corp</option>
+                            <option value="lopez">Industrias López S.A.</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Área de Derecho</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                            <option value="">Seleccionar área...</option>
+                            <option value="familia">Derecho de Familia</option>
+                            <option value="corporativo">Derecho Corporativo</option>
+                            <option value="laboral">Derecho Laboral</option>
+                            <option value="inmobiliario">Derecho Inmobiliario</option>
+                            <option value="penal">Derecho Penal</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-legal-gray mb-2">Título del Caso</label>
+                    <input type="text" placeholder="Ej: Divorcio Contencioso - Pérez vs González" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-legal-gray mb-2">Descripción</label>
+                    <textarea rows="4" placeholder="Describe brevemente el caso..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent"></textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Prioridad</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                            <option value="normal">Normal</option>
+                            <option value="alta">Alta</option>
+                            <option value="urgente">Urgente</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Abogado Responsable</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                            <option value="gonzalez">Dr. González</option>
+                            <option value="silva">Dra. Silva</option>
+                            <option value="lopez">Dr. López</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="saveNewCase()" class="flex-1 bg-legal-navy text-white py-3 px-6 rounded-lg font-medium hover:bg-legal-dark transition-colors">
+                        Crear Caso
+                    </button>
+                    <button type="button" onclick="closeModal('newCaseModal')" class="flex-1 border border-legal-gray text-legal-gray py-3 px-6 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Nuevo Cliente Modal -->
+    <div id="newClientModal" class="modal">
+        <div class="modal-content w-full max-w-2xl">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-legal-navy">Agregar Nuevo Cliente</h3>
+                <button onclick="closeModal('newClientModal')" class="text-legal-gray hover:text-legal-navy text-2xl">&times;</button>
+            </div>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Nombre</label>
+                        <input type="text" placeholder="Nombre completo" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Tipo de Cliente</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                            <option value="persona">Persona Física</option>
+                            <option value="empresa">Empresa</option>
+                            <option value="ong">ONG</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Email</label>
+                        <input type="email" placeholder="email@ejemplo.com" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-legal-gray mb-2">Teléfono</label>
+                        <input type="tel" placeholder="+54 11 1234-5678" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-legal-gray mb-2">Dirección</label>
+                    <input type="text" placeholder="Dirección completa" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-legal-gray mb-2">Notas</label>
+                    <textarea rows="3" placeholder="Información adicional sobre el cliente..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-legal-navy focus:border-transparent"></textarea>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="saveNewClient()" class="flex-1 bg-legal-navy text-white py-3 px-6 rounded-lg font-medium hover:bg-legal-dark transition-colors">
+                        Agregar Cliente
+                    </button>
+                    <button type="button" onclick="closeModal('newClientModal')" class="flex-1 border border-legal-gray text-legal-gray py-3 px-6 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Detalle de Caso Modal -->
+    <div id="caseDetailModal" class="modal">
+        <div class="modal-content w-full max-w-4xl">
+            <div class="flex items-center justify-between mb-6">
+                <h3 id="caseDetailTitle" class="text-xl font-bold text-legal-navy">Detalles del Caso</h3>
+                <button onclick="closeModal('caseDetailModal')" class="text-legal-gray hover:text-legal-navy text-2xl">&times;</button>
+            </div>
+            <div id="caseDetailContent" class="space-y-6">
+                <!-- Content will be filled by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-legal-navy text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-full transition-transform duration-300 z-50">
+        <span id="toastMessage">Mensaje de notificación</span>
+    </div>
+
+    <script>
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('es-AR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: false 
+            });
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Sidebar functions
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.style.transform = 'translateY(0)';
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateY(100%)';
+            }, 3000);
+        }
+
+        // Navigation functions
+        function showDashboard() {
+            showToast('Cargando Dashboard Principal...');
+            // In a real app, this would change the view
+        }
+
+        function showExpedientes() {
+            showToast('Cargando lista de Expedientes...');
+        }
+
+        function showCalendario() {
+            showToast('Abriendo Calendario de Audiencias...');
+        }
+
+        function showClientes() {
+            showToast('Cargando Base de Datos de Clientes...');
+        }
+
+        function showDocumentos() {
+            showToast('Accediendo a Biblioteca de Documentos...');
+        }
+
+        function showFacturacion() {
+            showToast('Abriendo Sistema de Facturación...');
+        }
+
+        function showTiempo() {
+            showToast('Cargando Registro de Tiempo...');
+        }
+
+        function showReportes() {
+            showToast('Generando Reportes Analíticos...');
+        }
+
+        // Quick action functions
+        function openNewCaseModal() {
+            openModal('newCaseModal');
+        }
+
+        function openNewClientModal() {
+            openModal('newClientModal');
+        }
+
+        function saveNewCase() {
+            showToast('✅ Nuevo caso creado exitosamente');
+            closeModal('newCaseModal');
+        }
+
+        function saveNewClient() {
+            showToast('✅ Cliente agregado a la base de datos');
+            closeModal('newClientModal');
+        }
+
+        // Metric card functions
+        function showCasosActivos() {
+            showToast('📁 Mostrando todos los casos activos (24)');
+        }
+
+        function showAudienciasHoy() {
+            showToast('🏛️ Lista de audiencias programadas para hoy');
+        }
+
+        function showIngresosMensuales() {
+            showToast('💰 Detalle de ingresos y facturación mensual');
+        }
+
+        function showHorasFacturadas() {
+            showToast('⏱️ Registro detallado de horas facturadas');
+        }
+
+        // Case detail functions
+        function openCaseDetail(caseId) {
+            const caseData = {
+                '2024-001': {
+                    title: 'Divorcio Contencioso - Fernández vs Fernández',
+                    status: 'URGENTE',
+                    area: 'Derecho de Familia',
+                    lawyer: 'Dr. González',
+                    court: 'Juzgado Civil N°3',
+                    nextHearing: 'Mañana 10:00 AM',
+                    description: 'Proceso de divorcio contencioso con custodia compartida de menores y división de bienes matrimoniales.',
+                    tasks: [
+                        'Preparar alegatos para audiencia',
+                        'Revisar documentación financiera',
+                        'Coordinar con perito valuador'
+                    ]
+                },
+                '2024-002': {
+                    title: 'Constitución S.A. - TechSolutions Corp',
+                    status: 'EN PROGRESO',
+                    area: 'Derecho Corporativo',
+                    lawyer: 'Dra. Silva',
+                    progress: '85% completo',
+                    deadline: '7 días hábiles',
+                    description: 'Constitución de sociedad anónima con actividad en tecnología y servicios digitales.',
+                    tasks: [
+                        'Completar estatutos sociales',
+                        'Obtener CUIT provisorio',
+                        'Inscripción en IGJ'
+                    ]
+                }
+            };
+
+            const data = caseData[caseId];
+            if (data) {
+                document.getElementById('caseDetailTitle').textContent = data.title;
+                
+                let content = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-legal-navy mb-2">Información General</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div><span class="font-medium">Estado:</span> <span class="px-2 py-1 rounded-full text-xs ${data.status === 'URGENTE' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}">${data.status}</span></div>
+                                    <div><span class="font-medium">Área:</span> ${data.area}</div>
+                                    <div><span class="font-medium">Abogado:</span> ${data.lawyer}</div>
+                                    ${data.court ? `<div><span class="font-medium">Juzgado:</span> ${data.court}</div>` : ''}
+                                    ${data.nextHearing ? `<div><span class="font-medium">Próxima audiencia:</span> ${data.nextHearing}</div>` : ''}
+                                    ${data.progress ? `<div><span class="font-medium">Progreso:</span> ${data.progress}</div>` : ''}
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-legal-navy mb-2">Descripción</h4>
+                                <p class="text-sm text-legal-gray">${data.description}</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-legal-navy mb-2">Tareas Pendientes</h4>
+                                <ul class="space-y-2">
+                                    ${data.tasks.map(task => `<li class="text-sm flex items-center space-x-2"><span class="w-2 h-2 bg-legal-gold rounded-full"></span><span>${task}</span></li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="space-y-2">
+                                <button onclick="addTask('${caseId}')" class="w-full bg-legal-navy text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-legal-dark transition-colors">
+                                    ➕ Agregar Tarea
+                                </button>
+                                <button onclick="addDocument('${caseId}')" class="w-full border border-legal-navy text-legal-navy py-2 px-4 rounded-lg text-sm font-medium hover:bg-legal-light transition-colors">
+                                    📄 Subir Documento
+                                </button>
+                                <button onclick="scheduleHearing('${caseId}')" class="w-full border border-legal-navy text-legal-navy py-2 px-4 rounded-lg text-sm font-medium hover:bg-legal-light transition-colors">
+                                    📅 Programar Audiencia
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('caseDetailContent').innerHTML = content;
+                openModal('caseDetailModal');
+            }
+        }
+
+        // Additional functions for case interactions
+        function addTask(caseId) {
+            showToast('✅ Nueva tarea agregada al expediente');
+            closeModal('caseDetailModal');
+        }
+
+        function addDocument(caseId) {
+            showToast('📄 Documento subido y vinculado al caso');
+            closeModal('caseDetailModal');
+        }
+
+        function scheduleHearing(caseId) {
+            showToast('📅 Audiencia programada en calendario');
+            closeModal('caseDetailModal');
+        }
+
+        // Agenda functions
+        function showAudienciaDetail(id) {
+            showToast('🏛️ Cargando detalles de la audiencia...');
+        }
+
+        function showReunionDetail(id) {
+            showToast('👥 Información de la reunión con cliente');
+        }
+
+        function showRevisionDetail(id) {
+            showToast('📋 Abriendo documentos para revisión');
+        }
+
+        // Time tracking functions
+        function showDetallesTiempo() {
+            showToast('⏱️ Generando reporte detallado de tiempo');
+        }
+
+        // Reminder functions
+        function showRecordatorio(id) {
+            showToast('🔔 Marcando recordatorio como visto');
+        }
+
+        // Profile function
+        function showProfile() {
+            showToast('👤 Abriendo perfil de usuario');
+        }
+
+        // View all functions
+        function showTodosExpedientes() {
+            showToast('📁 Cargando lista completa de expedientes');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Auto-close sidebar on mobile when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            if (window.innerWidth <= 768 && !sidebar.contains(event.target) && 
+                !event.target.classList.contains('md:hidden')) {
+                sidebar.classList.remove('show');
+                overlay.classList.remove('show');
+            }
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.fade-in');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

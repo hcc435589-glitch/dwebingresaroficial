@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteConsulting - Consultoría Empresarial de Alto Nivel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark': '#0a0a0a',
+                        'dark-lighter': '#1a1a1a',
+                        'electric-blue': '#00d4ff',
+                        'neon-green': '#80ff00',
+                        'purple': '#b333ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #b333ff, #00d4ff, #80ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+        .elegant-border {
+            background: linear-gradient(135deg, #b333ff, #00d4ff, #80ff00);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark/95 backdrop-blur-md border-b border-gray-800 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple to-electric-blue rounded-lg flex items-center justify-center">
+                        <span class="text-dark font-bold text-lg">💼</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold gradient-text">EliteConsulting</h1>
+                        <p class="text-xs text-gray-400">Excellence & Innovation</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-white hover:text-electric-blue transition-colors font-medium">Inicio</a>
+                    <a href="#servicios" class="text-gray-300 hover:text-electric-blue transition-colors">Servicios</a>
+                    <a href="#casos" class="text-gray-300 hover:text-electric-blue transition-colors">Casos</a>
+                    <a href="#equipo" class="text-gray-300 hover:text-electric-blue transition-colors">Equipo</a>
+                    <a href="#contacto" class="text-gray-300 hover:text-electric-blue transition-colors">Contacto</a>
+                </div>
+                <button class="elegant-border">
+                    <div class="bg-dark px-6 py-2 rounded-xl font-medium">
+                        Consulta Gratuita
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-24 pb-20 px-4 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-electric-blue/10 border border-electric-blue/30 rounded-full px-4 py-2 mb-6">
+                            <span class="w-2 h-2 bg-electric-blue rounded-full animate-pulse"></span>
+                            <span class="text-electric-blue text-sm font-medium">Líderes en Transformación Digital</span>
+                        </div>
+                        <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                            Transformamos tu <span class="gradient-text">Negocio</span> con 
+                            <span class="gradient-text">Estrategias</span> de Élite
+                        </h1>
+                        <p class="text-xl text-gray-300 leading-relaxed mt-6">
+                            Consultoría estratégica de alto nivel para empresas que buscan liderar su industria. Resultados medibles, innovación constante.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="elegant-border group">
+                            <div class="bg-dark px-8 py-4 rounded-xl font-semibold group-hover:bg-dark-lighter transition-colors">
+                                <span class="gradient-text">Consulta Estratégica</span> →
+                            </div>
+                        </button>
+                        <button class="px-8 py-4 border border-gray-600 rounded-xl font-semibold hover:border-electric-blue transition-colors">
+                            Ver Casos de Éxito
+                        </button>
+                    </div>
+
+                    <!-- Trust Indicators */
+                    <div class="pt-8 border-t border-gray-800">
+                        <p class="text-gray-400 text-sm mb-4">Empresas que confían en nosotros:</p>
+                        <div class="flex items-center space-x-8">
+                            <div class="text-gray-500 text-lg font-bold">TechCorp</div>
+                            <div class="text-gray-500 text-lg font-bold">GlobalTrade</div>
+                            <div class="text-gray-500 text-lg font-bold">InnovateS</div>
+                            <div class="text-gray-500 text-lg font-bold">FutureVision</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="floating-animation">
+                        <div class="elegant-border">
+                            <div class="bg-dark-lighter p-8 rounded-xl">
+                                <!-- Results Dashboard -->
+                                <div class="space-y-6">
+                                    <div class="text-center">
+                                        <h3 class="font-bold gradient-text text-lg mb-2">Resultados Q4 2024</h3>
+                                        <p class="text-gray-400 text-sm">Impacto empresarial medible</p>
+                                    </div>
+                                    
+                                    <!-- KPI Cards -->
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-dark p-4 rounded-lg border border-gray-800 text-center">
+                                            <div class="text-electric-blue text-3xl font-bold">247%</div>
+                                            <div class="text-gray-400 text-sm">ROI Promedio</div>
+                                            <div class="text-neon-green text-xs mt-1">↗ +89%</div>
+                                        </div>
+                                        <div class="bg-dark p-4 rounded-lg border border-gray-800 text-center">
+                                            <div class="text-purple text-3xl font-bold">$12M</div>
+                                            <div class="text-gray-400 text-sm">Valor Generado</div>
+                                            <div class="text-neon-green text-xs mt-1">↗ +156%</div>
+                                        </div>
+                                        <div class="bg-dark p-4 rounded-lg border border-gray-800 text-center">
+                                            <div class="text-neon-green text-3xl font-bold">67</div>
+                                            <div class="text-gray-400 text-sm">Proyectos</div>
+                                            <div class="text-electric-blue text-xs mt-1">100% Exitosos</div>
+                                        </div>
+                                        <div class="bg-dark p-4 rounded-lg border border-gray-800 text-center">
+                                            <div class="text-yellow-400 text-3xl font-bold">4.9</div>
+                                            <div class="text-gray-400 text-sm">Satisfacción</div>
+                                            <div class="text-neon-green text-xs mt-1">⭐⭐⭐⭐⭐</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Growth Chart Simulation -->
+                                    <div class="bg-dark p-4 rounded-lg border border-gray-800">
+                                        <h4 class="text-sm font-semibold mb-3 gradient-text">Crecimiento Empresarial</h4>
+                                        <div class="flex items-end justify-between space-x-2 h-20">
+                                            <div class="bg-electric-blue/30 w-4 h-8 rounded-t"></div>
+                                            <div class="bg-purple/30 w-4 h-12 rounded-t"></div>
+                                            <div class="bg-neon-green/30 w-4 h-16 rounded-t"></div>
+                                            <div class="bg-electric-blue/30 w-4 h-14 rounded-t"></div>
+                                            <div class="bg-purple/30 w-4 h-18 rounded-t"></div>
+                                            <div class="bg-neon-green/30 w-4 h-20 rounded-t"></div>
+                                        </div>
+                                        <div class="flex justify-between text-xs text-gray-400 mt-2">
+                                            <span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>Q5</span><span>Q6</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6">
+                    Servicios de <span class="gradient-text">Consultoría Elite</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Estrategias personalizadas que transforman desafíos en oportunidades de crecimiento exponencial
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="elegant-border group hover:scale-105 transition-all duration-300">
+                    <div class="bg-dark p-8 rounded-xl h-full">
+                        <div class="w-16 h-16 bg-electric-blue/20 rounded-lg flex items-center justify-center mb-6">
+                            <span class="text-electric-blue text-3xl">🚀</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text group-hover:text-electric-blue transition-colors">
+                            Transformación Digital
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Modernización integral de procesos, tecnología y cultura empresarial.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>• Automatización de procesos</li>
+                            <li>• Migración a la nube</li>
+                            <li>• Cultura digital</li>
+                        </ul>
+                        <div class="mt-6 text-electric-blue font-bold text-2xl">+340% ROI</div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="elegant-border group hover:scale-105 transition-all duration-300">
+                    <div class="bg-dark p-8 rounded-xl h-full">
+                        <div class="w-16 h-16 bg-neon-green/20 rounded-lg flex items-center justify-center mb-6">
+                            <span class="text-neon-green text-3xl">📊</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text group-hover:text-neon-green transition-colors">
+                            Estrategia Empresarial
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Planificación estratégica basada en datos y análisis de mercado profundo.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>• Análisis competitivo</li>
+                            <li>• Planificación 3-5 años</li>
+                            <li>• KPIs & métricas</li>
+                        </ul>
+                        <div class="mt-6 text-neon-green font-bold text-2xl">+180% Growth</div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="elegant-border group hover:scale-105 transition-all duration-300">
+                    <div class="bg-dark p-8 rounded-xl h-full">
+                        <div class="w-16 h-16 bg-purple/20 rounded-lg flex items-center justify-center mb-6">
+                            <span class="text-purple text-3xl">💡</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text group-hover:text-purple transition-colors">
+                            Innovación & R&D
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Desarrollo de nuevos productos y servicios disruptivos para el mercado.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>• Laboratorio de innovación</li>
+                            <li>• Prototipado rápido</li>
+                            <li>• Validación de mercado</li>
+                        </ul>
+                        <div class="mt-6 text-purple font-bold text-2xl">+67 Patents</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6">
+                    Resultados que <span class="gradient-text">Transforman</span> Industrias
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">$127M</div>
+                    <div class="text-gray-400">Valor Generado</div>
+                    <div class="text-neon-green text-sm mt-1">Para nuestros clientes</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">340%</div>
+                    <div class="text-gray-400">ROI Promedio</div>
+                    <div class="text-neon-green text-sm mt-1">En 12 meses</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">95%</div>
+                    <div class="text-gray-400">Éxito en Proyectos</div>
+                    <div class="text-neon-green text-sm mt-1">Garantía de resultados</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">24h</div>
+                    <div class="text-gray-400">Tiempo de Respuesta</div>
+                    <div class="text-neon-green text-sm mt-1">Soporte ejecutivo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">
+                ¿Listo para <span class="gradient-text">Liderar</span> tu Industria?
+            </h2>
+            <p class="text-xl text-gray-400 mb-8">
+                Programa una consulta estratégica gratuita con nuestros expertos
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="elegant-border">
+                    <div class="bg-dark px-8 py-4 rounded-xl font-semibold">
+                        <span class="gradient-text">🎯 Consulta Estratégica Gratuita</span>
+                    </div>
+                </button>
+                <button class="px-8 py-4 border border-gray-600 rounded-xl font-semibold hover:border-electric-blue transition-colors">
+                    📞 Llamar Ahora: +1 (555) 123-4567
+                </button>
+            </div>
+            
+            <!-- Guarantee Badge -->
+            <div class="mt-8 inline-flex items-center space-x-2 bg-neon-green/10 border border-neon-green/30 rounded-full px-6 py-3">
+                <span class="text-neon-green text-lg">✓</span>
+                <span class="text-neon-green font-medium">Garantía de resultados medibles en 90 días</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple to-electric-blue rounded-lg flex items-center justify-center">
+                            <span class="text-dark font-bold">💼</span>
+                        </div>
+                        <span class="gradient-text font-bold text-lg">EliteConsulting</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Transformando empresas con estrategias de élite desde 2015.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Servicios</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Transformación Digital</li>
+                        <li>Estrategia Empresarial</li>
+                        <li>Innovación & R&D</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Contacto</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>📧 hello@eliteconsulting.com</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>📍 Silicon Valley, CA</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Síguenos</h4>
+                    <div class="flex space-x-3">
+                        <div class="w-8 h-8 bg-electric-blue/20 rounded-lg flex items-center justify-center">
+                            <span class="text-electric-blue text-sm">in</span>
+                        </div>
+                        <div class="w-8 h-8 bg-purple/20 rounded-lg flex items-center justify-center">
+                            <span class="text-purple text-sm">tw</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center">
+                <p class="text-gray-400 text-sm">Demo desarrollado por <span class="gradient-text font-semibold">ImpaktCode</span> - Landing corporativa de alta conversión</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <button class="elegant-border">
+                        <div class="bg-dark px-6 py-2 rounded-lg text-sm font-medium">
+                            🚀 Solicitar Landing Similar
+                        </div>
+                    </button>
+                    <button class="elegant-border">
+                        <div class="bg-dark px-6 py-2 rounded-lg text-sm font-medium">
+                            💬 Consultar Desarrollo
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

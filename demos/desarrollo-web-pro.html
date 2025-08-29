@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovateTech Solutions - Empresa de Tecnología</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark': '#0a0a0a',
+                        'dark-lighter': '#1a1a1a',
+                        'electric-blue': '#00d4ff',
+                        'neon-green': '#80ff00',
+                        'purple': '#b333ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #b333ff, #00d4ff, #80ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+        .elegant-border {
+            background: linear-gradient(135deg, #b333ff, #00d4ff, #80ff00);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark-lighter/95 backdrop-blur-md border-b border-gray-800 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple to-electric-blue rounded-lg flex items-center justify-center">
+                        <span class="text-dark font-bold text-lg">🚀</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold gradient-text">InnovateTech</h1>
+                        <p class="text-xs text-gray-400">Solutions</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-white hover:text-electric-blue transition-colors font-medium">Inicio</a>
+                    <a href="#servicios" class="text-gray-300 hover:text-electric-blue transition-colors">Servicios</a>
+                    <a href="#proyectos" class="text-gray-300 hover:text-electric-blue transition-colors">Proyectos</a>
+                    <a href="#equipo" class="text-gray-300 hover:text-electric-blue transition-colors">Equipo</a>
+                    <a href="#contacto" class="text-gray-300 hover:text-electric-blue transition-colors">Contacto</a>
+                </div>
+                <button class="elegant-border">
+                    <div class="bg-dark px-6 py-2 rounded-xl font-medium">
+                        Cotizar Proyecto
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-24 pb-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-electric-blue/10 border border-electric-blue/30 rounded-full px-4 py-2 mb-6">
+                            <span class="w-2 h-2 bg-electric-blue rounded-full animate-pulse"></span>
+                            <span class="text-electric-blue text-sm font-medium">Innovación Tecnológica 2024</span>
+                        </div>
+                        <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                            Transformamos <span class="gradient-text">Ideas</span> en 
+                            <span class="gradient-text">Soluciones</span> Digitales
+                        </h1>
+                        <p class="text-xl text-gray-300 leading-relaxed mt-6">
+                            Desarrollo de software a medida, aplicaciones web y móviles que impulsan el crecimiento de tu negocio con tecnología de vanguardia.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="elegant-border group">
+                            <div class="bg-dark px-8 py-4 rounded-xl font-semibold group-hover:bg-dark-lighter transition-colors">
+                                <span class="gradient-text">Iniciar Proyecto</span> →
+                            </div>
+                        </button>
+                        <button class="px-8 py-4 border border-gray-600 rounded-xl font-semibold hover:border-electric-blue transition-colors">
+                            Ver Portfolio
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-8 pt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">150+</div>
+                            <div class="text-gray-400 text-sm mt-1">Proyectos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">98%</div>
+                            <div class="text-gray-400 text-sm mt-1">Satisfacción</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">24/7</div>
+                            <div class="text-gray-400 text-sm mt-1">Soporte</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="floating-animation">
+                        <div class="elegant-border">
+                            <div class="bg-dark-lighter p-8 rounded-xl">
+                                <!-- Mock Dashboard -->
+                                <div class="space-y-6">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-bold gradient-text">Dashboard Analytics</h3>
+                                        <div class="flex space-x-2">
+                                            <div class="w-3 h-3 bg-neon-green rounded-full"></div>
+                                            <div class="w-3 h-3 bg-electric-blue rounded-full"></div>
+                                            <div class="w-3 h-3 bg-purple rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Stats Cards -->
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-dark p-4 rounded-lg border border-gray-800">
+                                            <div class="text-electric-blue text-2xl font-bold">$47.2K</div>
+                                            <div class="text-gray-400 text-sm">Revenue</div>
+                                            <div class="text-neon-green text-xs">↗ +12.5%</div>
+                                        </div>
+                                        <div class="bg-dark p-4 rounded-lg border border-gray-800">
+                                            <div class="text-purple text-2xl font-bold">1,247</div>
+                                            <div class="text-gray-400 text-sm">Users</div>
+                                            <div class="text-neon-green text-xs">↗ +8.2%</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Chart Area -->
+                                    <div class="bg-dark p-4 rounded-lg border border-gray-800 h-32 flex items-end justify-between space-x-2">
+                                        <div class="bg-electric-blue/30 w-4 h-12 rounded-t"></div>
+                                        <div class="bg-purple/30 w-4 h-20 rounded-t"></div>
+                                        <div class="bg-neon-green/30 w-4 h-16 rounded-t"></div>
+                                        <div class="bg-electric-blue/30 w-4 h-24 rounded-t"></div>
+                                        <div class="bg-purple/30 w-4 h-18 rounded-t"></div>
+                                        <div class="bg-neon-green/30 w-4 h-28 rounded-t"></div>
+                                        <div class="bg-electric-blue/30 w-4 h-22 rounded-t"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute top-10 -right-4 w-6 h-6 bg-electric-blue rounded-full animate-pulse"></div>
+                    <div class="absolute bottom-10 -left-4 w-4 h-4 bg-neon-green rounded-full floating-animation" style="animation-delay: -2s;"></div>
+                    <div class="absolute top-1/2 -right-8 w-8 h-8 bg-purple/30 rounded-full floating-animation" style="animation-delay: -4s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6">
+                    Nuestros <span class="gradient-text">Servicios</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Soluciones tecnológicas integrales para llevar tu negocio al siguiente nivel
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="elegant-border group hover:scale-105 transition-all duration-300">
+                    <div class="bg-dark-lighter p-8 rounded-xl h-full">
+                        <div class="w-16 h-16 bg-electric-blue/20 rounded-lg flex items-center justify-center mb-6">
+                            <span class="text-electric-blue text-3xl">💻</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text group-hover:text-electric-blue transition-colors">
+                            Desarrollo Web
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Sitios web y aplicaciones responsivas con las últimas tecnologías web.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>• React & Next.js</li>
+                            <li>• E-commerce avanzado</li>
+                            <li>• PWA & SEO optimizado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="elegant-border group hover:scale-105 transition-all duration-300">
+                    <div class="bg-dark-lighter p-8 rounded-xl h-full">
+                        <div class="w-16 h-16 bg-neon-green/20 rounded-lg flex items-center justify-center mb-6">
+                            <span class="text-neon-green text-3xl">📱</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text group-hover:text-neon-green transition-colors">
+                            Apps Móviles
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Aplicaciones nativas e híbridas para iOS y Android.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>• React Native & Flutter</li>
+                            <li>• Integración con APIs</li>
+                            <li>• Push notifications</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="elegant-border group hover:scale-105 transition-all duration-300">
+                    <div class="bg-dark-lighter p-8 rounded-xl h-full">
+                        <div class="w-16 h-16 bg-purple/20 rounded-lg flex items-center justify-center mb-6">
+                            <span class="text-purple text-3xl">☁️</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text group-hover:text-purple transition-colors">
+                            Cloud Solutions
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Infraestructura en la nube escalable y segura.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li>• AWS & Azure</li>
+                            <li>• DevOps & CI/CD</li>
+                            <li>• Monitoreo 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Preview -->
+    <section id="proyectos" class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6">
+                    Proyectos <span class="gradient-text">Destacados</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="elegant-border group">
+                    <div class="bg-dark p-6 rounded-xl">
+                        <div class="h-40 bg-gradient-to-br from-electric-blue/20 to-purple/20 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-4xl">🏦</span>
+                        </div>
+                        <h3 class="font-bold mb-2 gradient-text">FinanceApp Pro</h3>
+                        <p class="text-gray-400 text-sm">Plataforma de gestión financiera empresarial</p>
+                    </div>
+                </div>
+
+                <div class="elegant-border group">
+                    <div class="bg-dark p-6 rounded-xl">
+                        <div class="h-40 bg-gradient-to-br from-neon-green/20 to-electric-blue/20 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-4xl">🛒</span>
+                        </div>
+                        <h3 class="font-bold mb-2 gradient-text">E-commerce Plus</h3>
+                        <p class="text-gray-400 text-sm">Tienda online con IA y analytics avanzados</p>
+                    </div>
+                </div>
+
+                <div class="elegant-border group">
+                    <div class="bg-dark p-6 rounded-xl">
+                        <div class="h-40 bg-gradient-to-br from-purple/20 to-neon-green/20 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-4xl">🎓</span>
+                        </div>
+                        <h3 class="font-bold mb-2 gradient-text">EduPlatform</h3>
+                        <p class="text-gray-400 text-sm">Sistema de gestión educativa y learning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">
+                ¿Listo para <span class="gradient-text">Innovar</span>?
+            </h2>
+            <p class="text-xl text-gray-400 mb-8">
+                Conversemos sobre tu próximo proyecto y hagámoslo realidad
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="elegant-border">
+                    <div class="bg-dark px-8 py-4 rounded-xl font-semibold">
+                        <span class="gradient-text">💬 Contactar Ahora</span>
+                    </div>
+                </button>
+                <button class="px-8 py-4 border border-gray-600 rounded-xl font-semibold hover:border-electric-blue transition-colors">
+                    📞 Llamar Gratis
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-lighter border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+            <p class="text-gray-400">Demo desarrollado por <span class="gradient-text font-semibold">ImpaktCode</span> - Sitio web corporativo profesional</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <button class="elegant-border">
+                    <div class="bg-dark px-6 py-2 rounded-lg text-sm font-medium">
+                        🚀 Solicitar Cotización
+                    </div>
+                </button>
+                <button class="elegant-border">
+                    <div class="bg-dark px-6 py-2 rounded-lg text-sm font-medium">
+                        💬 WhatsApp Business
+                    </div>
+                </button>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

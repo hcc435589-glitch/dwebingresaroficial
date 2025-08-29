@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groove Interactive - Plataforma de Gestión Empresarial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark': '#0a0a0a',
+                        'dark-lighter': '#1a1a1a',
+                        'electric-blue': '#00d4ff',
+                        'neon-green': '#80ff00',
+                        'purple': '#b333ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #b333ff, #00d4ff, #80ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .elegant-border {
+            background: linear-gradient(135deg, #b333ff, #00d4ff, #80ff00);
+            padding: 1px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <!-- Header -->
+    <header class="bg-dark-lighter border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 bg-gradient-to-r from-purple to-electric-blue rounded-lg flex items-center justify-center">
+                    <span class="text-dark font-bold text-lg">🎵</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold gradient-text">Groove Interactive</h1>
+                    <p class="text-sm text-gray-400">Dashboard de Gestión Musical</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-purple rounded-full"></div>
+                    <span class="text-sm font-medium">DJ Producer</span>
+                </div>
+                <button class="elegant-border">
+                    <div class="bg-dark-lighter px-4 py-2 rounded-xl text-sm font-medium">
+                        Live Stream
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Live Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="elegant-border">
+                <div class="bg-dark-lighter p-6 rounded-xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-400 text-sm">Oyentes en Vivo</p>
+                            <p class="text-3xl font-bold text-electric-blue">1,247</p>
+                        </div>
+                        <div class="w-12 h-12 bg-electric-blue/20 rounded-lg flex items-center justify-center">
+                            <span class="text-electric-blue text-2xl">🎧</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm">
+                        <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2"></div>
+                        <span class="text-red-400">EN VIVO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="elegant-border">
+                <div class="bg-dark-lighter p-6 rounded-xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-400 text-sm">Tracks Subidos</p>
+                            <p class="text-3xl font-bold text-neon-green">156</p>
+                        </div>
+                        <div class="w-12 h-12 bg-neon-green/20 rounded-lg flex items-center justify-center">
+                            <span class="text-neon-green text-2xl">🎵</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm">
+                        <span class="text-neon-green">↗ +12</span>
+                        <span class="text-gray-400 ml-2">esta semana</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="elegant-border">
+                <div class="bg-dark-lighter p-6 rounded-xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-400 text-sm">Reproducciones</p>
+                            <p class="text-3xl font-bold text-purple">847K</p>
+                        </div>
+                        <div class="w-12 h-12 bg-purple/20 rounded-lg flex items-center justify-center">
+                            <span class="text-purple text-2xl">▶️</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm">
+                        <span class="text-neon-green">↗ +28%</span>
+                        <span class="text-gray-400 ml-2">vs mes anterior</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="elegant-border">
+                <div class="bg-dark-lighter p-6 rounded-xl">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-400 text-sm">Seguidores</p>
+                            <p class="text-3xl font-bold text-yellow-400">23.4K</p>
+                        </div>
+                        <div class="w-12 h-12 bg-yellow-400/20 rounded-lg flex items-center justify-center">
+                            <span class="text-yellow-400 text-2xl">👥</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm">
+                        <span class="text-neon-green">↗ +340</span>
+                        <span class="text-gray-400 ml-2">nuevos hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Track Library -->
+            <div class="lg:col-span-2">
+                <div class="elegant-border">
+                    <div class="bg-dark-lighter p-6 rounded-xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold gradient-text">Biblioteca de Tracks</h2>
+                            <button class="elegant-border">
+                                <div class="bg-dark px-4 py-2 rounded-lg text-sm">Subir Track</div>
+                            </button>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-dark rounded-lg border border-gray-800">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-electric-blue/20 rounded-lg flex items-center justify-center">
+                                        <span class="text-electric-blue">🎵</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold">Summer Vibes 2024</h3>
+                                        <p class="text-sm text-gray-400">House • 4:32 • 847 plays</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-neon-green/20 text-neon-green rounded-full text-xs font-medium">Trending</span>
+                                    <button class="text-electric-blue hover:text-white transition-colors">▶️</button>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 bg-dark rounded-lg border border-gray-800">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-purple/20 rounded-lg flex items-center justify-center">
+                                        <span class="text-purple">🎵</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold">Midnight Bass Drop</h3>
+                                        <p class="text-sm text-gray-400">Dubstep • 3:45 • 1.2K plays</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-xs font-medium">Hot</span>
+                                    <button class="text-electric-blue hover:text-white transition-colors">▶️</button>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 bg-dark rounded-lg border border-gray-800">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-neon-green/20 rounded-lg flex items-center justify-center">
+                                        <span class="text-neon-green">🎵</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold">Chill Lounge Mix</h3>
+                                        <p class="text-sm text-gray-400">Ambient • 6:20 • 534 plays</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-xs font-medium">New</span>
+                                    <button class="text-electric-blue hover:text-white transition-colors">▶️</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Audio Waveform Visualizer -->
+                        <div class="mt-8 p-6 bg-dark rounded-lg border border-gray-800">
+                            <h3 class="font-semibold mb-4 gradient-text">Now Playing: Summer Vibes 2024</h3>
+                            <div class="flex items-center justify-between space-x-4">
+                                <button class="text-2xl">⏮️</button>
+                                <button class="text-3xl text-electric-blue">⏸️</button>
+                                <button class="text-2xl">⏭️</button>
+                                <div class="flex-1 mx-4">
+                                    <div class="flex items-end justify-center space-x-1 h-16">
+                                        <div class="bg-electric-blue/30 w-1 h-8 animate-pulse"></div>
+                                        <div class="bg-purple/30 w-1 h-12 animate-pulse" style="animation-delay: 0.1s;"></div>
+                                        <div class="bg-neon-green/30 w-1 h-16 animate-pulse" style="animation-delay: 0.2s;"></div>
+                                        <div class="bg-electric-blue/30 w-1 h-10 animate-pulse" style="animation-delay: 0.3s;"></div>
+                                        <div class="bg-purple/30 w-1 h-14 animate-pulse" style="animation-delay: 0.4s;"></div>
+                                        <div class="bg-neon-green/30 w-1 h-12 animate-pulse" style="animation-delay: 0.5s;"></div>
+                                        <div class="bg-electric-blue/30 w-1 h-16 animate-pulse" style="animation-delay: 0.6s;"></div>
+                                    </div>
+                                </div>
+                                <span class="text-sm text-gray-400">2:34 / 4:32</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Live Chat -->
+                <div class="elegant-border">
+                    <div class="bg-dark-lighter p-6 rounded-xl">
+                        <h3 class="text-lg font-bold gradient-text mb-4">Chat en Vivo</h3>
+                        <div class="space-y-3 h-40 overflow-y-auto">
+                            <div class="text-sm">
+                                <span class="text-electric-blue font-medium">MusicLover23:</span>
+                                <span class="text-gray-300"> ¡Este drop está increíble! 🔥</span>
+                            </div>
+                            <div class="text-sm">
+                                <span class="text-neon-green font-medium">BassHead:</span>
+                                <span class="text-gray-300"> Need more bass! 🎵</span>
+                            </div>
+                            <div class="text-sm">
+                                <span class="text-purple font-medium">VibeSeeker:</span>
+                                <span class="text-gray-300"> Request: Midnight Bass Drop</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <input type="text" placeholder="Mensaje..." class="flex-1 bg-dark border border-gray-700 rounded-lg px-3 py-2 text-sm text-white">
+                            <button class="elegant-border">
+                                <div class="bg-dark px-3 py-2 rounded-lg text-sm">💬</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="elegant-border">
+                    <div class="bg-dark-lighter p-6 rounded-xl">
+                        <h3 class="text-lg font-bold gradient-text mb-4">Próximos Shows</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 p-3 bg-dark rounded-lg">
+                                <div class="text-center">
+                                    <div class="text-electric-blue font-bold text-lg">22</div>
+                                    <div class="text-gray-400 text-xs">MAR</div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-sm">Club Matrix</p>
+                                    <p class="text-gray-400 text-xs">10:00 PM - Live Set</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-dark rounded-lg">
+                                <div class="text-center">
+                                    <div class="text-neon-green font-bold text-lg">28</div>
+                                    <div class="text-gray-400 text-xs">MAR</div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-sm">Festival Electro</p>
+                                    <p class="text-gray-400 text-xs">8:00 PM - Main Stage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Widget -->
+                <div class="elegant-border">
+                    <div class="bg-dark-lighter p-6 rounded-xl">
+                        <h3 class="text-lg font-bold gradient-text mb-4">Analytics</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-400">Top Track</span>
+                                <span class="text-sm font-medium">Summer Vibes</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-400">Peak Listeners</span>
+                                <span class="text-sm font-medium text-electric-blue">2,847</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-400">Revenue</span>
+                                <span class="text-sm font-medium text-neon-green">$3,240</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark-lighter border-t border-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-6 text-center">
+            <p class="text-gray-400">Demo desarrollado por <span class="gradient-text font-semibold">ImpaktCode</span> - Plataforma interactiva con gestión en tiempo real</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <button class="elegant-border">
+                    <div class="bg-dark px-6 py-2 rounded-lg text-sm font-medium">
+                        🎵 Ver Plataforma Completa
+                    </div>
+                </button>
+                <button class="elegant-border">
+                    <div class="bg-dark px-6 py-2 rounded-lg text-sm font-medium">
+                        💬 Solicitar Demo Personal
+                    </div>
+                </button>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
