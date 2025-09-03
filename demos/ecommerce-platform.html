@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMax Gym - Centro de Alto Rendimiento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fire-orange': '#FF4500',
+                        'steel-gray': '#2C3E50',
+                        'neon-yellow': '#FFFF00',
+                        'blood-red': '#8B0000',
+                        'iron-black': '#1C1C1C',
+                        'white-pure': '#FFFFFF',
+                    },
+                    fontFamily: {
+                        'display': ['Oswald', 'sans-serif'],
+                        'body': ['Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: linear-gradient(135deg, #1C1C1C 0%, #2C3E50 100%);
+        }
+        .power-gradient {
+            background: linear-gradient(135deg, #FF4500 0%, #8B0000 100%);
+        }
+        .steel-shadow {
+            box-shadow: 0 8px 32px rgba(255, 69, 0, 0.3);
+        }
+        .pulse-power {
+            animation: pulsePower 2s infinite;
+        }
+        @keyframes pulsePower {
+            0%, 100% { 
+                box-shadow: 0 0 5px rgba(255, 69, 0, 0.7);
+            }
+            50% { 
+                box-shadow: 0 0 20px rgba(255, 69, 0, 0.9), 0 0 30px rgba(255, 69, 0, 0.6);
+            }
+        }
+        .muscle-text {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="bg-iron-black text-white-pure">
+    <!-- Header Intenso -->
+    <header class="bg-steel-gray shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 power-gradient rounded-lg flex items-center justify-center steel-shadow pulse-power">
+                        <span class="text-white text-2xl font-display font-bold">💪</span>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-display font-bold text-fire-orange muscle-text">FITMAX GYM</h1>
+                        <p class="text-neon-yellow text-sm font-bold">CENTRO DE ALTO RENDIMIENTO</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-fire-orange hover:text-neon-yellow font-bold transition-colors">INICIO</a>
+                    <a href="#entrenamientos" class="text-white-pure hover:text-neon-yellow transition-colors">ENTRENAMIENTOS</a>
+                    <a href="#planes" class="text-white-pure hover:text-neon-yellow transition-colors">PLANES</a>
+                    <a href="#resultados" class="text-white-pure hover:text-neon-yellow transition-colors">RESULTADOS</a>
+                    <button class="power-gradient text-white px-6 py-3 rounded-lg hover:scale-105 transition-transform steel-shadow font-bold">
+                        ÚNETE YA
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-iron-black overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-6xl font-display font-bold text-fire-orange mb-6 leading-tight muscle-text">
+                    TRANSFORMA TU <span class="text-neon-yellow">FÍSICO</span>
+                </h2>
+                <h3 class="text-3xl font-display font-bold text-white-pure mb-6">
+                    SUPERA TUS <span class="text-blood-red">LÍMITES</span>
+                </h3>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Entrena con la intensidad de un campeón. Equipos de última generación, 
+                    entrenadores profesionales y un ambiente que te motiva a dar lo mejor de ti.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="power-gradient text-white px-8 py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform steel-shadow">
+                        PRUEBA GRATUITA
+                    </button>
+                    <button class="border-2 border-neon-yellow text-neon-yellow px-8 py-4 rounded-lg font-bold text-lg hover:bg-neon-yellow hover:text-iron-black transition-colors">
+                        VER PLANES
+                    </button>
+                </div>
+                <div class="mt-8 grid grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-display font-bold text-fire-orange">24/7</div>
+                        <div class="text-sm text-gray-400">ACCESO TOTAL</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-display font-bold text-neon-yellow">500+</div>
+                        <div class="text-sm text-gray-400">MIEMBROS ACTIVOS</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-display font-bold text-blood-red">15</div>
+                        <div class="text-sm text-gray-400">AÑOS DE EXPERIENCIA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Entrenamiento intenso" 
+                     class="rounded-2xl steel-shadow">
+                <div class="absolute -top-6 -right-6 bg-fire-orange text-white p-6 rounded-2xl steel-shadow pulse-power">
+                    <div class="text-2xl font-bold">💥</div>
+                    <div class="text-xs font-bold">BEAST MODE</div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-neon-yellow text-iron-black p-6 rounded-2xl steel-shadow">
+                    <div class="text-2xl font-bold">-50%</div>
+                    <div class="text-xs font-bold">PRIMER MES</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Entrenamientos -->
+    <section class="py-20 bg-steel-gray">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-display font-bold text-fire-orange mb-4 muscle-text">ENTRENAMIENTOS DE ÉLITE</h3>
+                <p class="text-xl text-gray-300">PROGRAMAS DISEÑADOS PARA CAMPEONES</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-iron-black p-8 rounded-2xl steel-shadow hover:scale-105 transition-transform border border-fire-orange">
+                    <div class="w-20 h-20 power-gradient rounded-full flex items-center justify-center mb-6 mx-auto steel-shadow pulse-power">
+                        <span class="text-white text-3xl">🏋️‍♂️</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold text-fire-orange mb-4 text-center">FUERZA EXTREMA</h4>
+                    <p class="text-gray-300 mb-6 text-center">Desarrolla masa muscular y fuerza con técnicas avanzadas de powerlifting.</p>
+                    <div class="text-center mb-6">
+                        <span class="text-3xl font-bold text-neon-yellow">$890</span>
+                        <span class="text-gray-400">/mes</span>
+                    </div>
+                    <div class="bg-fire-orange/20 p-3 rounded-lg mb-4 text-center">
+                        <span class="text-fire-orange font-bold text-sm">🔥 MÁS INTENSO</span>
+                    </div>
+                    <ul class="text-sm text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center"><span class="text-fire-orange mr-2">💪</span>Entrenamiento personalizado</li>
+                        <li class="flex items-center"><span class="text-fire-orange mr-2">💪</span>Coach especializado IFBB</li>
+                        <li class="flex items-center"><span class="text-fire-orange mr-2">💪</span>Seguimiento nutricional</li>
+                        <li class="flex items-center"><span class="text-fire-orange mr-2">💪</span>Suplementación incluida</li>
+                        <li class="flex items-center"><span class="text-fire-orange mr-2">💪</span>Mediciones corporales</li>
+                    </ul>
+                    <button class="w-full power-gradient text-white py-3 rounded-lg font-bold hover:scale-105 transition-transform">
+                        COMENZAR AHORA
+                    </button>
+                </div>
+
+                <div class="bg-iron-black p-8 rounded-2xl steel-shadow hover:scale-105 transition-transform border border-neon-yellow">
+                    <div class="w-20 h-20 bg-neon-yellow rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="text-iron-black text-3xl">🔥</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold text-neon-yellow mb-4 text-center">CARDIO POWER</h4>
+                    <p class="text-gray-300 mb-6 text-center">Quema grasa y mejora tu resistencia cardiovascular con entrenamientos HIIT.</p>
+                    <div class="text-center mb-6">
+                        <span class="text-3xl font-bold text-neon-yellow">$650</span>
+                        <span class="text-gray-400">/mes</span>
+                    </div>
+                    <div class="bg-neon-yellow/20 p-3 rounded-lg mb-4 text-center">
+                        <span class="text-neon-yellow font-bold text-sm">⚡ QUEMA GRASA</span>
+                    </div>
+                    <ul class="text-sm text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center"><span class="text-neon-yellow mr-2">⚡</span>Clases grupales dinámicas</li>
+                        <li class="flex items-center"><span class="text-neon-yellow mr-2">⚡</span>Equipos de última generación</li>
+                        <li class="flex items-center"><span class="text-neon-yellow mr-2">⚡</span>Plan nutricional incluido</li>
+                        <li class="flex items-center"><span class="text-neon-yellow mr-2">⚡</span>Clases ilimitadas</li>
+                        <li class="flex items-center"><span class="text-neon-yellow mr-2">⚡</span>Monitor cardiaco</li>
+                    </ul>
+                    <button class="w-full bg-neon-yellow text-iron-black py-3 rounded-lg font-bold hover:scale-105 transition-transform">
+                        COMENZAR AHORA
+                    </button>
+                </div>
+
+                <div class="bg-iron-black p-8 rounded-2xl steel-shadow hover:scale-105 transition-transform border border-blood-red">
+                    <div class="w-20 h-20 bg-blood-red rounded-full flex items-center justify-center mb-6 mx-auto pulse-power">
+                        <span class="text-white text-3xl">👑</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold text-blood-red mb-4 text-center">PLAN ÉLITE</h4>
+                    <p class="text-gray-300 mb-6 text-center">Acceso total a todas las áreas, entrenamientos personalizados y nutricionista.</p>
+                    <div class="text-center mb-6">
+                        <span class="text-3xl font-bold text-blood-red">$1,250</span>
+                        <span class="text-gray-400">/mes</span>
+                    </div>
+                    <div class="bg-blood-red/20 p-3 rounded-lg mb-4 text-center">
+                        <span class="text-blood-red font-bold text-sm">👑 VIP TOTAL</span>
+                    </div>
+                    <ul class="text-sm text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center"><span class="text-blood-red mr-2">👑</span>Entrenador personal dedicado</li>
+                        <li class="flex items-center"><span class="text-blood-red mr-2">👑</span>Nutricionista personalizado</li>
+                        <li class="flex items-center"><span class="text-blood-red mr-2">👑</span>Acceso VIP a todas las áreas</li>
+                        <li class="flex items-center"><span class="text-blood-red mr-2">👑</span>Masajes deportivos</li>
+                        <li class="flex items-center"><span class="text-blood-red mr-2">👑</span>Estacionamiento gratis</li>
+                    </ul>
+                    <button class="w-full bg-blood-red text-white py-3 rounded-lg font-bold hover:scale-105 transition-transform">
+                        SER ÉLITE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horarios y Clases -->
+    <section class="py-20 bg-iron-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-display font-bold text-fire-orange mb-4 muscle-text">HORARIOS DE CLASES</h3>
+                <p class="text-xl text-gray-300">ENTRENAMIENTOS TODOS LOS DÍAS</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-steel-gray p-8 rounded-2xl steel-shadow">
+                    <h4 class="text-2xl font-display font-bold text-neon-yellow mb-6 text-center">LUNES A VIERNES</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-iron-black rounded-lg">
+                            <div>
+                                <h5 class="font-bold text-fire-orange">BEAST MODE</h5>
+                                <p class="text-gray-400 text-sm">Fuerza extrema</p>
+                            </div>
+                            <span class="text-neon-yellow font-bold">06:00 - 07:30</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-iron-black rounded-lg">
+                            <div>
+                                <h5 class="font-bold text-neon-yellow">CARDIO BLAST</h5>
+                                <p class="text-gray-400 text-sm">Alta intensidad</p>
+                            </div>
+                            <span class="text-neon-yellow font-bold">08:00 - 09:00</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-iron-black rounded-lg">
+                            <div>
+                                <h5 class="font-bold text-blood-red">ELITE TRAINING</h5>
+                                <p class="text-gray-400 text-sm">Solo miembros VIP</p>
+                            </div>
+                            <span class="text-neon-yellow font-bold">19:00 - 20:30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-steel-gray p-8 rounded-2xl steel-shadow">
+                    <h4 class="text-2xl font-display font-bold text-neon-yellow mb-6 text-center">SÁBADOS Y DOMINGOS</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-iron-black rounded-lg">
+                            <div>
+                                <h5 class="font-bold text-fire-orange">WARRIOR WEEKEND</h5>
+                                <p class="text-gray-400 text-sm">Entrenamiento militar</p>
+                            </div>
+                            <span class="text-neon-yellow font-bold">09:00 - 11:00</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-iron-black rounded-lg">
+                            <div>
+                                <h5 class="font-bold text-neon-yellow">FAMILIA FIT</h5>
+                                <p class="text-gray-400 text-sm">Entrenar en familia</p>
+                            </div>
+                            <span class="text-neon-yellow font-bold">15:00 - 16:30</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-iron-black rounded-lg">
+                            <div>
+                                <h5 class="font-bold text-blood-red">RECOVERY YOGA</h5>
+                                <p class="text-gray-400 text-sm">Relajación y flexibilidad</p>
+                            </div>
+                            <span class="text-neon-yellow font-bold">18:00 - 19:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resultados -->
+    <section class="py-20 bg-iron-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-display font-bold text-fire-orange mb-4 muscle-text">TRANSFORMACIONES REALES</h3>
+                <p class="text-xl text-gray-300">RESULTADOS QUE HABLAN POR SÍ SOLOS</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-steel-gray p-8 rounded-2xl steel-shadow border border-fire-orange">
+                    <h4 class="text-2xl font-display font-bold text-fire-orange mb-6 text-center">TRANSFORMACIÓN JORGE</h4>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <div class="text-center mb-2 text-gray-400 font-bold">ANTES</div>
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Antes del entrenamiento" 
+                                 class="w-full h-48 object-cover rounded-xl">
+                        </div>
+                        <div>
+                            <div class="text-center mb-2 text-fire-orange font-bold">DESPUÉS</div>
+                            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Después del entrenamiento" 
+                                 class="w-full h-48 object-cover rounded-xl">
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-center italic">"En 6 meses logré el cuerpo que siempre quise. Los entrenadores son increíbles." - Jorge, 28 años</p>
+                    <div class="text-center mt-4">
+                        <span class="bg-fire-orange text-white px-4 py-2 rounded-full text-sm font-bold">-15 KG GRASA | +8 KG MÚSCULO</span>
+                    </div>
+                </div>
+
+                <div class="bg-steel-gray p-8 rounded-2xl steel-shadow border border-neon-yellow">
+                    <h4 class="text-2xl font-display font-bold text-neon-yellow mb-6 text-center">TRANSFORMACIÓN MARIA</h4>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <div class="text-center mb-2 text-gray-400 font-bold">ANTES</div>
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616c056b0a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Antes del entrenamiento" 
+                                 class="w-full h-48 object-cover rounded-xl">
+                        </div>
+                        <div>
+                            <div class="text-center mb-2 text-neon-yellow font-bold">DESPUÉS</div>
+                            <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Después del entrenamiento" 
+                                 class="w-full h-48 object-cover rounded-xl">
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-center italic">"Nunca pensé que podría estar en la mejor forma de mi vida a los 35. ¡Gracias FITMAX!" - María, 35 años</p>
+                    <div class="text-center mt-4">
+                        <span class="bg-neon-yellow text-iron-black px-4 py-2 rounded-full text-sm font-bold">-12 KG GRASA | FUERZA +200%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membresía -->
+    <section class="py-20 power-gradient">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-5xl font-display font-bold text-white mb-6 muscle-text">ÚNETE A LA ÉLITE</h3>
+                    <p class="text-white text-xl mb-8 opacity-90">
+                        Primera semana GRATIS. Descubre por qué somos el gimnasio #1 de la ciudad.
+                    </p>
+                    <div class="space-y-4 text-white">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">📍</span>
+                            <span>Av. del Libertador 5678, Puerto Madero</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">📞</span>
+                            <span>+54 11 7890-1234</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">⏰</span>
+                            <span>24/7 - Los 365 días del año</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl steel-shadow">
+                    <h4 class="text-3xl font-display font-bold text-iron-black mb-6 text-center">COMIENZA HOY</h4>
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Nombre completo" 
+                               class="w-full p-4 border border-gray-300 rounded-lg focus:border-fire-orange focus:outline-none">
+                        <input type="email" placeholder="Email" 
+                               class="w-full p-4 border border-gray-300 rounded-lg focus:border-fire-orange focus:outline-none">
+                        <input type="tel" placeholder="Teléfono" 
+                               class="w-full p-4 border border-gray-300 rounded-lg focus:border-fire-orange focus:outline-none">
+                        <select class="w-full p-4 border border-gray-300 rounded-lg focus:border-fire-orange focus:outline-none">
+                            <option>Selecciona tu objetivo</option>
+                            <option>Perder peso</option>
+                            <option>Ganar músculo</option>
+                            <option>Mejorar resistencia</option>
+                            <option>Competir</option>
+                        </select>
+                        <button class="w-full power-gradient text-white py-4 rounded-lg font-bold text-lg hover:scale-105 transition-transform steel-shadow">
+                            COMENZAR GRATIS
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-iron-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <div class="w-12 h-12 power-gradient rounded-lg flex items-center justify-center">
+                    <span class="text-white text-xl">💪</span>
+                </div>
+                <h5 class="text-3xl font-display font-bold text-fire-orange">FITMAX GYM</h5>
+            </div>
+            <p class="text-gray-400 mb-4">Centro de Alto Rendimiento | Registro Municipal: 54321</p>
+            <p class="text-gray-500 text-sm">© 2024 FITMAX GYM. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

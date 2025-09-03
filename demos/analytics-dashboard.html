@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalPro - Sistema de Gestión Jurídica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lawyer-navy': '#1e3a8a',
+                        'lawyer-gold': '#f59e0b',
+                        'lawyer-light': '#f8fafc',
+                        'lawyer-gray': '#64748b',
+                        'lawyer-dark': '#0f172a',
+                        'success-green': '#10b981',
+                        'warning-red': '#ef4444',
+                        'pending-yellow': '#eab308',
+                    },
+                    fontFamily: {
+                        'serif': ['Crimson Pro', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+        }
+        .lawyer-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        }
+        .professional-shadow {
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.1);
+        }
+        .case-urgent {
+            border-left: 4px solid #ef4444;
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%);
+        }
+        .case-normal {
+            border-left: 4px solid #10b981;
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%);
+        }
+        .case-pending {
+            border-left: 4px solid #eab308;
+            background: linear-gradient(90deg, rgba(234, 179, 8, 0.05) 0%, transparent 100%);
+        }
+        .chart-animation {
+            animation: drawChart 1s ease-out;
+        }
+        @keyframes drawChart {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+    </style>
+</head>
+<body class="bg-lawyer-light">
+    <!-- Header Profesional -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 lawyer-gradient rounded-xl flex items-center justify-center professional-shadow">
+                        <span class="text-white text-2xl">⚖️</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-serif font-bold text-lawyer-navy">LegalPro</h1>
+                        <p class="text-lawyer-gray text-sm">Sistema de Gestión Jurídica</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex items-center space-x-4">
+                        <span class="text-lawyer-gray text-sm">Casos Activos:</span>
+                        <span class="bg-success-green text-white px-3 py-1 rounded-full text-sm font-semibold">24</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="text-right">
+                            <p class="text-sm font-semibold text-lawyer-navy">Dr. Carlos González</p>
+                            <p class="text-lawyer-gray text-xs">Socio Principal</p>
+                        </div>
+                        <div class="w-10 h-10 bg-lawyer-gold rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">CG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Principal -->
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-xl p-6 professional-shadow hover:shadow-lg transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-lawyer-gray text-sm font-medium">Casos Activos</p>
+                        <p class="text-3xl font-bold text-lawyer-navy">24</p>
+                        <p class="text-success-green text-sm">+3 esta semana</p>
+                    </div>
+                    <div class="w-12 h-12 bg-lawyer-navy rounded-lg flex items-center justify-center">
+                        <span class="text-white text-xl">📋</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 professional-shadow hover:shadow-lg transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-lawyer-gray text-sm font-medium">Clientes Totales</p>
+                        <p class="text-3xl font-bold text-lawyer-navy">156</p>
+                        <p class="text-lawyer-gold text-sm">12 nuevos este mes</p>
+                    </div>
+                    <div class="w-12 h-12 bg-lawyer-gold rounded-lg flex items-center justify-center">
+                        <span class="text-white text-xl">👥</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 professional-shadow hover:shadow-lg transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-lawyer-gray text-sm font-medium">Audiencias Hoy</p>
+                        <p class="text-3xl font-bold text-lawyer-navy">3</p>
+                        <p class="text-pending-yellow text-sm">2 pendientes</p>
+                    </div>
+                    <div class="w-12 h-12 bg-pending-yellow rounded-lg flex items-center justify-center">
+                        <span class="text-white text-xl">🏛️</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 professional-shadow hover:shadow-lg transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-lawyer-gray text-sm font-medium">Facturación Mensual</p>
+                        <p class="text-3xl font-bold text-lawyer-navy">$89,500</p>
+                        <p class="text-success-green text-sm">+15% vs mes anterior</p>
+                    </div>
+                    <div class="w-12 h-12 bg-success-green rounded-lg flex items-center justify-center">
+                        <span class="text-white text-xl">💰</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Principal -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Casos Recientes -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl professional-shadow overflow-hidden">
+                    <div class="lawyer-gradient text-white p-6">
+                        <h3 class="text-xl font-serif font-semibold">Casos Activos</h3>
+                        <p class="text-blue-100 text-sm">Gestión de casos en curso</p>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="case-urgent p-4 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-lawyer-navy">Divorcio Contencioso - María García</h4>
+                                    <p class="text-lawyer-gray text-sm mb-2">Caso N° 2024-001 | Derecho de Familia</p>
+                                    <div class="flex items-center space-x-4 text-xs text-lawyer-gray">
+                                        <span>📅 Audiencia: 15 Feb 2024</span>
+                                        <span>⏰ 10:00 AM</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="bg-warning-red text-white px-3 py-1 rounded-full text-xs">URGENTE</span>
+                                    <p class="text-lawyer-gray text-xs mt-2">Vence en 2 días</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="case-normal p-4 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-lawyer-navy">Constitución Sociedad - TechCorp SA</h4>
+                                    <p class="text-lawyer-gray text-sm mb-2">Caso N° 2024-002 | Derecho Corporativo</p>
+                                    <div class="flex items-center space-x-4 text-xs text-lawyer-gray">
+                                        <span>📋 Documentación: 80% completa</span>
+                                        <span>⏰ 5 días hábiles</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="bg-success-green text-white px-3 py-1 rounded-full text-xs">EN PROGRESO</span>
+                                    <p class="text-lawyer-gray text-xs mt-2">Dr. Silva</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="case-pending p-4 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-lawyer-navy">Reclamo Laboral - Industrias López</h4>
+                                    <p class="text-lawyer-gray text-sm mb-2">Caso N° 2024-003 | Derecho Laboral</p>
+                                    <div class="flex items-center space-x-4 text-xs text-lawyer-gray">
+                                        <span>📄 Esperando documentación</span>
+                                        <span>👤 Cliente: José López</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="bg-pending-yellow text-white px-3 py-1 rounded-full text-xs">PENDIENTE</span>
+                                    <p class="text-lawyer-gray text-xs mt-2">Dra. López</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="case-normal p-4 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-lawyer-navy">Compraventa Inmobiliaria - Depto Palermo</h4>
+                                    <p class="text-lawyer-gray text-sm mb-2">Caso N° 2024-004 | Derecho Inmobiliario</p>
+                                    <div class="flex items-center space-x-4 text-xs text-lawyer-gray">
+                                        <span>🏠 Escrituración programada</span>
+                                        <span>💰 $150,000 USD</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="bg-success-green text-white px-3 py-1 rounded-full text-xs">CASI LISTO</span>
+                                    <p class="text-lawyer-gray text-xs mt-2">Dr. González</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Lateral -->
+            <div class="space-y-6">
+                <!-- Calendario de Audiencias -->
+                <div class="bg-white rounded-xl p-6 professional-shadow">
+                    <h3 class="text-lg font-serif font-semibold text-lawyer-navy mb-4">Próximas Audiencias</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-lawyer-light rounded-lg">
+                            <div>
+                                <p class="font-medium text-sm text-lawyer-navy">García vs García</p>
+                                <p class="text-lawyer-gray text-xs">Juzgado Civil N°5</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-warning-red text-sm font-bold">HOY 10:00</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-lawyer-light rounded-lg">
+                            <div>
+                                <p class="font-medium text-sm text-lawyer-navy">TechCorp Constitución</p>
+                                <p class="text-lawyer-gray text-xs">Registro Público</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lawyer-gray text-sm">16 Feb 14:30</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-lawyer-light rounded-lg">
+                            <div>
+                                <p class="font-medium text-sm text-lawyer-navy">López Laboral</p>
+                                <p class="text-lawyer-gray text-xs">Ministerio de Trabajo</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lawyer-gray text-sm">18 Feb 09:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tiempo Facturado -->
+                <div class="bg-white rounded-xl p-6 professional-shadow">
+                    <h3 class="text-lg font-serif font-semibold text-lawyer-navy mb-4">Tiempo Facturado</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-lawyer-gray text-sm">Esta Semana</span>
+                            <span class="text-lawyer-navy font-semibold">47.5 hs</span>
+                        </div>
+                        <div class="w-full bg-lawyer-light rounded-full h-2">
+                            <div class="bg-lawyer-gold h-2 rounded-full chart-animation" style="width: 79%;"></div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lawyer-gray text-xs">Meta semanal: 60 horas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clientes Recientes -->
+                <div class="bg-white rounded-xl p-6 professional-shadow">
+                    <h3 class="text-lg font-serif font-semibold text-lawyer-navy mb-4">Clientes Recientes</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-lawyer-navy rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">MG</span>
+                            </div>
+                            <div>
+                                <p class="font-medium text-sm text-lawyer-navy">María García</p>
+                                <p class="text-lawyer-gray text-xs">Derecho de Familia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-lawyer-gold rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">TC</span>
+                            </div>
+                            <div>
+                                <p class="font-medium text-sm text-lawyer-navy">TechCorp SA</p>
+                                <p class="text-lawyer-gray text-xs">Derecho Corporativo</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-success-green rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">JL</span>
+                            </div>
+                            <div>
+                                <p class="font-medium text-sm text-lawyer-navy">José López</p>
+                                <p class="text-lawyer-gray text-xs">Derecho Laboral</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentos Pendientes -->
+                <div class="bg-white rounded-xl p-6 professional-shadow">
+                    <h3 class="text-lg font-serif font-semibold text-lawyer-navy mb-4">Documentos</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-lawyer-gray text-sm">Contratos pendientes</span>
+                            <span class="bg-warning-red text-white px-2 py-1 rounded text-xs">3</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lawyer-gray text-sm">Escritos listos</span>
+                            <span class="bg-success-green text-white px-2 py-1 rounded text-xs">7</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lawyer-gray text-sm">En revisión</span>
+                            <span class="bg-pending-yellow text-white px-2 py-1 rounded text-xs">2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acciones Rápidas -->
+                <div class="bg-white rounded-xl p-6 professional-shadow">
+                    <h3 class="text-lg font-serif font-semibold text-lawyer-navy mb-4">Acciones</h3>
+                    <div class="space-y-3">
+                        <button class="w-full lawyer-gradient text-white py-3 rounded-lg font-medium hover:opacity-90 transition-opacity">
+                            Nuevo Caso
+                        </button>
+                        <button class="w-full border-2 border-lawyer-gold text-lawyer-gold py-3 rounded-lg font-medium hover:bg-lawyer-gold hover:text-white transition-colors">
+                            Agregar Cliente
+                        </button>
+                        <button class="w-full border-2 border-lawyer-gray text-lawyer-gray py-3 rounded-lg font-medium hover:bg-lawyer-gray hover:text-white transition-colors">
+                            Generar Factura
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

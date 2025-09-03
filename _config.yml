@@ -1,0 +1,7 @@
+
+# Configuración para GitHub Pages
+plugins:
+  - jekyll-redirect-from
+
+include:
+  - .htaccess

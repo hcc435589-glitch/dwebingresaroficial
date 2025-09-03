@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkinPerfect - Clínica de Estética Avanzada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rose-gold': '#E8B4B8',
+                        'soft-pink': '#F8E8E9',
+                        'deep-rose': '#C85A5A',
+                        'cream': '#FDF8F6',
+                        'nude': '#E5C3C6',
+                        'white-pure': '#FFFFFF',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                        'script': ['Dancing Script', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(to bottom, #FDF8F6, #F8E8E9);
+        }
+        .beauty-gradient {
+            background: linear-gradient(135deg, #E8B4B8 0%, #C85A5A 100%);
+        }
+        .soft-shadow {
+            box-shadow: 0 15px 35px rgba(232, 180, 184, 0.2);
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .glow-effect {
+            box-shadow: 0 0 30px rgba(232, 180, 184, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-cream">
+    <!-- Header Elegante -->
+    <header class="bg-white-pure shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 beauty-gradient rounded-full flex items-center justify-center soft-shadow">
+                        <span class="text-white text-2xl">✨</span>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-script font-bold text-deep-rose">SkinPerfect</h1>
+                        <p class="text-rose-gold text-sm">Clínica de Estética Avanzada</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-deep-rose hover:text-rose-gold font-medium transition-colors">Inicio</a>
+                    <a href="#tratamientos" class="text-gray-600 hover:text-rose-gold transition-colors">Tratamientos</a>
+                    <a href="#resultados" class="text-gray-600 hover:text-rose-gold transition-colors">Resultados</a>
+                    <a href="#nosotros" class="text-gray-600 hover:text-rose-gold transition-colors">Nosotros</a>
+                    <button class="beauty-gradient text-white px-6 py-3 rounded-full hover:scale-105 transition-transform soft-shadow">
+                        Reservar Cita
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-white-pure overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-6xl font-script font-bold text-deep-rose mb-6 leading-tight">
+                    Tu belleza <span class="text-rose-gold">natural</span> realzada
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Descubre la mejor versión de ti misma con nuestros tratamientos de estética avanzada. 
+                    Tecnología de vanguardia y profesionales especializados.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="beauty-gradient text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transition-transform soft-shadow">
+                        Consulta Gratuita
+                    </button>
+                    <button class="border-2 border-rose-gold text-rose-gold px-8 py-4 rounded-full font-semibold hover:bg-rose-gold hover:text-white transition-colors">
+                        Ver Tratamientos
+                    </button>
+                </div>
+                <div class="mt-8 flex items-center space-x-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-deep-rose">500+</div>
+                        <div class="text-sm text-gray-500">Clientas satisfechas</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-rose-gold">15+</div>
+                        <div class="text-sm text-gray-500">Años de experiencia</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-deep-rose">98%</div>
+                        <div class="text-sm text-gray-500">Resultados exitosos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="floating">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Tratamiento facial profesional" 
+                         class="rounded-3xl soft-shadow glow-effect">
+                </div>
+                <div class="absolute -top-6 -right-6 bg-white-pure p-6 rounded-2xl soft-shadow">
+                    <span class="text-2xl">💆‍♀️</span>
+                    <div class="text-sm font-semibold text-deep-rose mt-2">Facial Premium</div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-rose-gold text-white p-6 rounded-2xl soft-shadow">
+                    <div class="text-2xl font-bold">-20%</div>
+                    <div class="text-xs">Primera consulta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tratamientos -->
+    <section class="py-20 bg-soft-pink">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-script font-bold text-deep-rose mb-4">Nuestros Tratamientos</h3>
+                <p class="text-xl text-gray-600">Tecnología avanzada para resultados excepcionales</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white-pure p-8 rounded-3xl soft-shadow hover:scale-105 transition-transform">
+                    <div class="w-20 h-20 beauty-gradient rounded-full flex items-center justify-center mb-6 mx-auto glow-effect">
+                        <span class="text-white text-3xl">✨</span>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-deep-rose mb-4 text-center">HydraFacial</h4>
+                    <p class="text-gray-600 mb-6 text-center">Limpieza profunda, exfoliación e hidratación en un solo tratamiento.</p>
+                    <div class="text-center mb-6">
+                        <span class="text-3xl font-bold text-rose-gold">$2,500</span>
+                        <span class="text-gray-500">/sesión</span>
+                    </div>
+                    <div class="bg-rose-gold/10 p-3 rounded-2xl mb-4">
+                        <p class="text-deep-rose text-sm font-semibold text-center">🔥 Más popular</p>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Limpieza profunda</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Hidratación intensa</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Resultados inmediatos</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Sin dolor ni molestias</li>
+                    </ul>
+                    <button class="w-full beauty-gradient text-white py-3 rounded-full font-semibold hover:scale-105 transition-transform">
+                        Reservar Ahora
+                    </button>
+                </div>
+
+                <div class="bg-white-pure p-8 rounded-3xl soft-shadow hover:scale-105 transition-transform">
+                    <div class="w-20 h-20 bg-nude rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="text-white text-3xl">💉</span>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-deep-rose mb-4 text-center">Botox & Rellenos</h4>
+                    <p class="text-gray-600 mb-6 text-center">Rejuvenecimiento facial sin cirugía con resultados naturales.</p>
+                    <div class="text-center mb-6">
+                        <span class="text-3xl font-bold text-rose-gold">$4,800</span>
+                        <span class="text-gray-500">/área</span>
+                    </div>
+                    <div class="bg-deep-rose/10 p-3 rounded-2xl mb-4">
+                        <p class="text-deep-rose text-sm font-semibold text-center">🎆 Premium</p>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Resultados naturales</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Sin tiempo de recuperación</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Duración 6-12 meses</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Consulta incluida</li>
+                    </ul>
+                    <button class="w-full beauty-gradient text-white py-3 rounded-full font-semibold hover:scale-105 transition-transform">
+                        Reservar Ahora
+                    </button>
+                </div>
+
+                <div class="bg-white-pure p-8 rounded-3xl soft-shadow hover:scale-105 transition-transform">
+                    <div class="w-20 h-20 bg-deep-rose rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="text-white text-3xl">🌟</span>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-deep-rose mb-4 text-center">Láser Facial</h4>
+                    <p class="text-gray-600 mb-6 text-center">Rejuvenecimiento con láser para manchas, arrugas y textura.</p>
+                    <div class="text-center mb-6">
+                        <span class="text-3xl font-bold text-rose-gold">$3,200</span>
+                        <span class="text-gray-500">/sesión</span>
+                    </div>
+                    <div class="bg-rose-gold/10 p-3 rounded-2xl mb-4">
+                        <p class="text-deep-rose text-sm font-semibold text-center">⚡ Avanzado</p>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Elimina manchas</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Reduce arrugas</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Mejora textura</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-2">✓</span>Estimula colágeno</li>
+                    </ul>
+                    <button class="w-full beauty-gradient text-white py-3 rounded-full font-semibold hover:scale-105 transition-transform">
+                        Reservar Ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paquetes Especiales -->
+    <section class="py-20 bg-white-pure">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-script font-bold text-deep-rose mb-4">Paquetes Especiales</h3>
+                <p class="text-xl text-gray-600">Combina tratamientos y ahorra hasta 30%</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-r from-rose-gold/20 to-deep-rose/20 p-8 rounded-3xl soft-shadow border-2 border-rose-gold">
+                    <div class="text-center mb-6">
+                        <h4 class="text-3xl font-script font-bold text-deep-rose mb-2">Paquete Rejuvenecimiento</h4>
+                        <p class="text-gray-600">HydraFacial + Botox + Consulta de seguimiento</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <div class="line-through text-gray-500 text-lg">$7,300</div>
+                        <div class="text-4xl font-bold text-rose-gold mb-2">$5,200</div>
+                        <div class="bg-rose-gold text-white px-4 py-2 rounded-full text-sm font-bold inline-block">Ahorra $2,100</div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-6">
+                        <li class="flex items-center"><span class="text-rose-gold mr-3">✓</span>1 sesión HydraFacial completa</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-3">✓</span>Botox en 2 áreas a elección</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-3">✓</span>Consulta post-tratamiento</li>
+                        <li class="flex items-center"><span class="text-rose-gold mr-3">✓</span>Plan de cuidado personalizado</li>
+                    </ul>
+                    <button class="w-full beauty-gradient text-white py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                        Comprar Paquete
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-r from-deep-rose/20 to-nude/20 p-8 rounded-3xl soft-shadow border-2 border-deep-rose">
+                    <div class="text-center mb-6">
+                        <h4 class="text-3xl font-script font-bold text-deep-rose mb-2">Paquete Transformación</h4>
+                        <p class="text-gray-600">Plan completo de 3 meses con seguimiento</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <div class="line-through text-gray-500 text-lg">$12,500</div>
+                        <div class="text-4xl font-bold text-deep-rose mb-2">$8,900</div>
+                        <div class="bg-deep-rose text-white px-4 py-2 rounded-full text-sm font-bold inline-block">Ahorra $3,600</div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-6">
+                        <li class="flex items-center"><span class="text-deep-rose mr-3">✓</span>3 sesiones HydraFacial</li>
+                        <li class="flex items-center"><span class="text-deep-rose mr-3">✓</span>2 sesiones láser facial</li>
+                        <li class="flex items-center"><span class="text-deep-rose mr-3">✓</span>Botox y rellenos incluidos</li>
+                        <li class="flex items-center"><span class="text-deep-rose mr-3">✓</span>Seguimiento mensual gratuito</li>
+                    </ul>
+                    <button class="w-full bg-deep-rose text-white py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                        Comprar Paquete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Antes y Después -->
+    <section class="py-20 bg-white-pure">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-script font-bold text-deep-rose mb-4">Resultados Reales</h3>
+                <p class="text-xl text-gray-600">Transformaciones que hablan por sí solas</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-soft-pink p-8 rounded-3xl soft-shadow">
+                    <h4 class="text-2xl font-semibold text-deep-rose mb-6 text-center">HydraFacial + Botox</h4>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <div class="text-center mb-2 text-gray-600 font-medium">Antes</div>
+                            <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Antes del tratamiento" 
+                                 class="w-full h-48 object-cover rounded-2xl">
+                        </div>
+                        <div>
+                            <div class="text-center mb-2 text-rose-gold font-medium">Después</div>
+                            <img src="https://images.unsplash.com/photo-1594736797933-d0cab6c21fb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Después del tratamiento" 
+                                 class="w-full h-48 object-cover rounded-2xl">
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-center italic">"Los resultados superaron mis expectativas. Mi piel se ve radiante y natural." - María, 35 años</p>
+                </div>
+
+                <div class="bg-soft-pink p-8 rounded-3xl soft-shadow">
+                    <h4 class="text-2xl font-semibold text-deep-rose mb-6 text-center">Tratamiento Láser</h4>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <div class="text-center mb-2 text-gray-600 font-medium">Antes</div>
+                            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Antes del tratamiento láser" 
+                                 class="w-full h-48 object-cover rounded-2xl">
+                        </div>
+                        <div>
+                            <div class="text-center mb-2 text-rose-gold font-medium">Después</div>
+                            <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                 alt="Después del tratamiento láser" 
+                                 class="w-full h-48 object-cover rounded-2xl">
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-center italic">"Las manchas desaparecieron por completo. El tratamiento cambió mi vida." - Ana, 42 años</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reserva tu Cita -->
+    <section class="py-20 beauty-gradient">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-5xl font-script font-bold text-white mb-6">Reserva tu cita</h3>
+                    <p class="text-white text-xl mb-8 opacity-90">
+                        Primera consulta gratuita. Evalúa tu piel y descubre el tratamiento ideal para ti.
+                    </p>
+                    <div class="space-y-4 text-white">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">📍</span>
+                            <span>Av. Santa Fe 1234, Palermo</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">📞</span>
+                            <span>+54 11 5678-9000</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">⏰</span>
+                            <span>Lun-Vie: 9:00-19:00 | Sáb: 9:00-17:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white-pure p-8 rounded-3xl soft-shadow">
+                    <h4 class="text-3xl font-script font-bold text-deep-rose mb-6 text-center">Agenda tu consulta</h4>
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Nombre completo" 
+                               class="w-full p-4 border border-gray-300 rounded-2xl focus:border-rose-gold focus:outline-none">
+                        <input type="email" placeholder="Email" 
+                               class="w-full p-4 border border-gray-300 rounded-2xl focus:border-rose-gold focus:outline-none">
+                        <input type="tel" placeholder="Teléfono" 
+                               class="w-full p-4 border border-gray-300 rounded-2xl focus:border-rose-gold focus:outline-none">
+                        <select class="w-full p-4 border border-gray-300 rounded-2xl focus:border-rose-gold focus:outline-none">
+                            <option>Selecciona un tratamiento</option>
+                            <option>HydraFacial</option>
+                            <option>Botox & Rellenos</option>
+                            <option>Láser Facial</option>
+                            <option>Consulta General</option>
+                        </select>
+                        <textarea rows="3" placeholder="Mensaje (opcional)" 
+                                  class="w-full p-4 border border-gray-300 rounded-2xl focus:border-rose-gold focus:outline-none"></textarea>
+                        <button class="w-full beauty-gradient text-white py-4 rounded-2xl font-semibold hover:scale-105 transition-transform soft-shadow">
+                            Reservar Cita Gratuita
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-deep-rose text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <div class="w-12 h-12 bg-rose-gold rounded-full flex items-center justify-center">
+                    <span class="text-white text-xl">✨</span>
+                </div>
+                <h5 class="text-3xl font-script font-bold">SkinPerfect</h5>
+            </div>
+            <p class="text-white opacity-90 mb-4">Clínica de Estética Avanzada | Registro ANMAT: 12345</p>
+            <p class="text-white opacity-70 text-sm">© 2024 SkinPerfect. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
